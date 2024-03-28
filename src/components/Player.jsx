@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Player({name,symbol}) {
+function Player({name,symbol,isActive}) {
     const [isEditing, setisEditing] = useState(false);
     const [userinput, setuserinput] = useState("");
     const [newusername, setnewusername] = useState(name)
@@ -11,7 +11,7 @@ function Player({name,symbol}) {
     // }
   return (
 
-    <li>
+    <li className={isActive ? "active":undefined}>
       <span className="player">
         {isEditing ? (
           <input type="text"   onChange={(e) => setuserinput(e.target.value)}  />

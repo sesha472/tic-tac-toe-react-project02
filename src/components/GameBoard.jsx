@@ -6,25 +6,20 @@ const intialGameboard=[
     [null,null,null],
 ]
 
-
-
-
-function GameBoard() {
+function GameBoard( {onSelectSquare,activePlayer}) {
 
     const [gameboard, setgameboard] = useState(intialGameboard);
-    const [playersymbol, setplayersymbol] = useState(true)
 
 function handleSelectSquare(rowIndex,colIndex){
     setgameboard((prvsgameboard)=>{
         const updatedgameboard=[...prvsgameboard.map(indexrow=>[...indexrow])]
-        {playersymbol ? updatedgameboard[rowIndex][colIndex]="X" :updatedgameboard[rowIndex][colIndex]="y"}
+        updatedgameboard[rowIndex][colIndex]=activePlayer;
        
        console.log(updatedgameboard[rowIndex][colIndex]);
-       setplayersymbol(!playersymbol)
        return updatedgameboard;
     
     })
-
+    onSelectSquare();
     
 
 }
