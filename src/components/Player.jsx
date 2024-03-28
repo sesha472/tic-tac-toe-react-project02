@@ -5,22 +5,38 @@ function Player({name,symbol}) {
     const [userinput, setuserinput] = useState("");
     const [newusername, setnewusername] = useState(name)
    
-     function usernameHandler() {
-        setnewusername(userinput)
-        setuserinput("")
-    }
+    //  function usernameHandler() {
+    //     setnewusername(userinput)
+    //     setuserinput("")
+    // }
   return (
-    <li>
-            <span className="player">
-             {isEditing ?<input type='text' onChange={(e)=>setuserinput(e.target.value)}/>:<span className="player-name"> {newusername} </span> }
-           
-            <span className="player-symbol">{symbol}</span>
-            </span>
-          {userinput? <button onClick={usernameHandler}>save</button>: <button onClick={()=>setisEditing(!isEditing)}>Edit</button>}
 
-          
-          </li>
-  )
+    <li>
+      <span className="player">
+        {isEditing ? (
+          <input type="text"   onChange={(e) => setuserinput(e.target.value)}  />
+        ) : (
+          <span className="player-name"> {newusername} </span>
+        )}
+
+        <span className="player-symbol">{symbol}</span>
+      </span>
+      {userinput ? (
+        <button
+          onClick={() => {
+            setnewusername(userinput), setuserinput(""),setisEditing(!isEditing);
+          }}
+        >
+          save
+        </button>
+      ) : (
+        <button onClick={() => setisEditing(true)}>Edit</button>
+      )}
+    </li>
+  );
 }
 
-export default Player
+
+
+
+export default Player;
