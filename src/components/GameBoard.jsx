@@ -4,9 +4,16 @@ const intialGameboard=[
     [null,null,null],
     [null,null,null],
     [null,null,null],
-]
+];
 
-function GameBoard( {onSelectSquare}) {
+function GameBoard( {onSelectSquare,turns}) {
+  let gameboard=intialGameboard;
+
+  for (const rowitem of turns) {
+     const {square,player}=rowitem;
+     const {row,col}=square;
+     gameboard[row][col]=player;
+  }
 
 //     const [gameboard, setgameboard] = useState(intialGameboard);
 
@@ -28,9 +35,9 @@ function GameBoard( {onSelectSquare}) {
       {gameboard.map((row, rowIndex) => (
         <li key={rowIndex}>
           <ol>
-            {row.map((playerSymbol, colIndex) => (
+            {row.map((playersymbol, colIndex) => (
               <li key={colIndex}>
-                <button onClick={onSelectSquare} >{playerSymbol}</button>
+                <button onClick={()=>onSelectSquare(rowIndex,colIndex)} >{playersymbol}</button>
               </li>
             ))}
           </ol>
